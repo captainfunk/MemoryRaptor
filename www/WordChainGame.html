@@ -14,16 +14,16 @@
     <div class="page">
 
         <div class="top">
-            <div class="timer">0:27</div>
-            <div class="word-counter">16/27</div>
+            <div class="timer">0:00</div>
+            <div class="word-counter">0/00</div>
         </div>
 
         <main class="main">
-            <div class="the-word">Hello World</div>
+            <div class="the-word"></div>
 
             <div class="side-buttons">
                 <button class="btn-sound" onclick="">So</button>
-                <button class="btn-pause" onclick="">Pa</button>
+                <button class="btn-pause" onclick="pauseResumeGame()">Pa</button>
                 <button class="btn-help" onclick="">He</button>
             </div>
         </main>
@@ -36,30 +36,93 @@
 
 		<script>
 
-			var strWords = "hello,coco,nigga,power,suppa strong";
-			var words = strWords.split(',');
-			var i=0;
-			var wordDisplayTime = 3; // in seconds
+			/* Globals */
+			var words;
+			var currentWordIdx=0;
+			var wordDisplayTime = 2; // in seconds
+			var isGamePlaying = true; // indicates if the game is in play mode or paused
+			var secondsCounter = 0; // countdown timer
+			var timer;
+			/*-----------*/
 
+			/* functions */
 			function displayNextWord(){
-				console.log("function entry: " + i.toString());
-				if(i < words.length){
-					document.getElementsByClassName("the-word")[0].innerHTML=words[i];
-					++i;
+				if(currentWordIdx < words.length){
+					$(".the-word").text(words[currentWordIdx]);
+					//console.log("currentWordInx: " + currentWordIdx);
+					//console.log(words[currentWordIdx]);
+					++currentWordIdx;
 				}
-				else{
-					i=0;
-					document.getElementsByClassName("the-word")[0].innerHTML=words[i];
-					++i;
+				$(".word-counter").text(currentWordIdx.toString() + "/" + words.length);
+			}
+
+			function processData(allText) {
+				var allTextLines = allText.split(/\r\n|\n/);
+				console.log(typeof(allTextLines));
+				console.log("size: "+allTextLines.length);
+				console.log("size: "+allTextLines[0].length);
+				console.log(allTextLines.toString());
+				words = allTextLines[0].split(',');
+				console.log("# of words: " + words.length);
+			}
+
+			function pauseResumeGame(){
+				if(isGamePlaying){
+					clearInterval(timer); // pause the game
+					isGamePlaying = false;
+				}
+				else{ // resume the game
+					resumeGame();
 				}
 			}
 
-			function updateTimer(){
-				setInterval(function(){
-					document.getElementsByClassName("timer")[0].innerHTML =
+			function resumeGame(){
+				if(!isGamePlaying){
+					isGamePlaying = true;
+					playGame();
+				}
+			}
+
+			function playGame() {
+				timer = setInterval(function () {
+					if (secondsCounter % wordDisplayTime === 0) {
+						displayNextWord();
+					}
+					$(".timer").text("0:0" + (wordDisplayTime - secondsCounter % wordDisplayTime));
+					secondsCounter++;
+					console.log(secondsCounter);
+
+					// if all the words are shown - stop the counter
+					if (secondsCounter == words.length * wordDisplayTime + 1) {
+						clearInterval(timer);
+						$(".timer").text("0:00");
+						$(".the-word").text("");
+						console.log("clear interval");
+					}
+				}, 1000);
+			}
+
+			function readWordsFromFile() {
+				$(document).ready(function () {
+					$.ajax({
+						type: "GET",
+						url: "words.txt",
+						dataType: "text",
+						success: function (data) {
+							processData(data);
+						}
+					});
 				});
 			}
-			//setInterval(function(){alert("Hello coco nigga!")}, 3000);
+			/*----------------*/
+
+			/* main */
+
+			readWordsFromFile();
+			playGame();
+
+			/*-----------*/
+
 		</script>
 	</body>
 

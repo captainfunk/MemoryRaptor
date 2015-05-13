@@ -1,0 +1,117 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, img, ins, kbd, q, s, samp,
+small, strike, sub, sup, tt, var, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    /*vertical-align: baseline;*/
+}
+.clear{
+    float:none;
+    clear:both;
+    height:0;
+}
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.clearfix:after {
+    content: " "; /* Older browser do not support empty content */
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+ul, li{
+    list-style:none;
+}
+.icons{
+    overflow: hidden;
+}
+
+/*********************************/
+body{}
+
+.page{
+    margin: 0 auto;
+    width: 100vw;/*300px;*/
+    height: 100vh;
+    background: rgba(240, 249, 32, 0.29);
+    padding: 0 5px;
+    position: relative;
+}
+
+/********************************/
+.top{
+    /*height: 40px;*/
+    text-align: right;
+    background: #009000;
+    padding: 5px;
+}
+
+.timer, .word-counter{
+    padding: 5px 8px;
+    margin-left: 5px;
+    background: rgba(218, 230, 221, 0.34);
+    display: inline-block;
+}
+
+
+
+.main{
+    height: 350px;
+    position: relative;
+    text-align: center;
+}
+
+.the-word{
+    position: relative;
+    top: 55%;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: Helvetica;
+}
+
+.side-buttons{
+    position: absolute;
+    right: 0;
+    top: 5vh;
+    width: 14vw;
+}
+.side-buttons button{
+    height: 3.5vh;
+}
+
+
+
+
+.bottom{
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+    text-align: right;
+    width: 100%;
+    padding: 5px;
+}
+
+.button.next-word{
+    padding: 5px 8px;
+    background: rgba(218, 230, 221, 0.34);
+    display: inline-block;
+}

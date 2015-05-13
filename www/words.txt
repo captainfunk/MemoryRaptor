@@ -1,0 +1,1 @@
+money,power,chair,table,gas,banana,ananas,computer
