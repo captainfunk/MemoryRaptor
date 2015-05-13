@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p id="demo"></p>
+<button onclick="getElementById('demo').innerHTML=Date()">Click</button>
+<button onclick="this.innerHTML=Date()">Click</button>
+
+
+<script>
+    var coco = {
+        age: 25,
+        power: 'suppa strong',
+        color: 'black'
+    };
+
+    var str = "hello, coco, nigga, suppa, strong, power";
+    var arr = str.split(",");
+
+    console.log(arr.length);
+    for(i=0; i < arr.length; i++) {
+        console.log(arr[i]);
+        document.getElementById('demo').innerHTML += arr[i];
+    }
+    //document.getElementById('demo').innerHTML = str.length;
+</script>
+
+
+</body>
+</html>

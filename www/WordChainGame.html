@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>	
+	<head>
+		<script src="js/jquery-1.11.2.min.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" href="css/style.css" />
+
+        <title>Word Chain</title>
+	</head>
+	
+	<body>
+
+    <div class="page">
+
+        <div class="top">
+            <div class="timer">0:27</div>
+            <div class="word-counter">16/27</div>
+        </div>
+
+        <main class="main">
+            <div class="the-word">Hello World</div>
+
+            <div class="side-buttons">
+                <button class="btn-sound" onclick="">So</button>
+                <button class="btn-pause" onclick="">Pa</button>
+                <button class="btn-help" onclick="">He</button>
+            </div>
+        </main>
+
+        <div class="bottom">
+            <button class="next-word" onclick="displayNextWord()">Next</button>
+        </div>
+
+    </div>
+
+		<script>
+
+			var strWords = "hello,coco,nigga,power,suppa strong";
+			var words = strWords.split(',');
+			var i=0;
+			var wordDisplayTime = 3; // in seconds
+
+			function displayNextWord(){
+				console.log("function entry: " + i.toString());
+				if(i < words.length){
+					document.getElementsByClassName("the-word")[0].innerHTML=words[i];
+					++i;
+				}
+				else{
+					i=0;
+					document.getElementsByClassName("the-word")[0].innerHTML=words[i];
+					++i;
+				}
+			}
+
+			function updateTimer(){
+				setInterval(function(){
+					document.getElementsByClassName("timer")[0].innerHTML =
+				});
+			}
+			//setInterval(function(){alert("Hello coco nigga!")}, 3000);
+		</script>
+	</body>
+
+</html>
